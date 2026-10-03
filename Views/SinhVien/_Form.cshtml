@@ -1,0 +1,52 @@
+﻿@model SinhVien
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="Id" />
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <label asp-for="MaSV" class="form-label"></label>
+        <input asp-for="MaSV" class="form-control" />
+        <span asp-validation-for="MaSV" class="text-danger"></span>
+    </div>
+    <div class="col-md-8">
+        <label asp-for="HoTen" class="form-label"></label>
+        <input asp-for="HoTen" class="form-control" />
+        <span asp-validation-for="HoTen" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="NgaySinh" class="form-label"></label>
+        <input asp-for="NgaySinh" class="form-control" type="date" />
+        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="GioiTinh" class="form-label"></label>
+        <select asp-for="GioiTinh" class="form-select">
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+            <option value="Khác">Khác</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="KhoaId" class="form-label"></label>
+        <select asp-for="KhoaId" class="form-select" asp-items="(SelectList)ViewBag.Khoas">
+            <option value="">-- Chọn khoa --</option>
+        </select>
+        <span asp-validation-for="KhoaId" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="SoDienThoai" class="form-label"></label>
+        <input asp-for="SoDienThoai" class="form-control" />
+        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="DiaChi" class="form-label"></label>
+        <input asp-for="DiaChi" class="form-control" />
+        <span asp-validation-for="DiaChi" class="text-danger"></span>
+    </div>
+</div>
