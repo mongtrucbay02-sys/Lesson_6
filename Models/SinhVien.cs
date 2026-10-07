@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Lesson6.Models;
 
@@ -44,4 +45,7 @@ public class SinhVien
     public int KhoaId { get; set; }
 
     public Khoa? Khoa { get; set; }
+
+    [ValidateNever]
+    public List<SinhVienAnh> Anhs { get; set; } = new();
 }

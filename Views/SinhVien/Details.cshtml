@@ -19,6 +19,24 @@
             <dd class="col-sm-9">@Model.Khoa?.TenKhoa</dd>
             <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Email)</dt>
             <dd class="col-sm-9">@Model.Email</dd>
+            <dt class="col-sm-3">Hình ảnh</dt>
+            <dd class="col-sm-9">
+                @if (Model.Anhs.Any())
+                {
+                    <div class="d-flex flex-wrap gap-2">
+                        @foreach (var anh in Model.Anhs)
+                        {
+                            <a href="@anh.DuongDan" target="_blank">
+                                <img src="@anh.DuongDan" alt="@Model.HoTen" class="img-thumbnail" style="height:140px;width:140px;object-fit:cover" />
+                            </a>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <span class="text-muted">Chưa có ảnh</span>
+                }
+            </dd>
             <dt class="col-sm-3">@Html.DisplayNameFor(m => m.SoDienThoai)</dt>
             <dd class="col-sm-9">@Model.SoDienThoai</dd>
             <dt class="col-sm-3">@Html.DisplayNameFor(m => m.DiaChi)</dt>

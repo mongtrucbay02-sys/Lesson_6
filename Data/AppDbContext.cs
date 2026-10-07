@@ -10,6 +10,7 @@ public class AppDbContext : DbContext
 
     public DbSet<SinhVien> SinhViens => Set<SinhVien>();
     public DbSet<Khoa> Khoas => Set<Khoa>();
+    public DbSet<SinhVienAnh> SinhVienAnhs => Set<SinhVienAnh>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,6 +23,13 @@ public class AppDbContext : DbContext
             .WithMany(k => k.SinhViens)
             .HasForeignKey(s => s.KhoaId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // Xóa sinh viên thì xóa luôn các ảnh của sinh viên đó
+        modelBuilder.Entity<SinhVienAnh>()
+            .HasOne(a => a.SinhVien)
+            .WithMany(s => s.Anhs)
+            .HasForeignKey(a => a.SinhVienId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         // Dữ liệu mẫu
         modelBuilder.Entity<Khoa>().HasData(

@@ -39,6 +39,36 @@
         <input asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
+    <div class="col-12">
+        <label class="form-label">Hình ảnh </label>
+        <input type="file" name="hinhAnhs" class="form-control" multiple
+               accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
+        @foreach (var e in ViewData.ModelState["hinhAnhs"]?.Errors ?? new Microsoft.AspNetCore.Mvc.ModelBinding.ModelErrorCollection())
+        {
+            <div class="text-danger">@e.ErrorMessage</div>
+        }
+        <label class="form-label mt-3"> dán link ảnh </label>
+        <textarea name="linkAnhs" class="form-control" rows="2" placeholder="https://example.com/anh.jpg">@ViewBag.LinkAnhs</textarea>
+        @foreach (var e in ViewData.ModelState["linkAnhs"]?.Errors ?? new Microsoft.AspNetCore.Mvc.ModelBinding.ModelErrorCollection())
+        {
+            <div class="text-danger">@e.ErrorMessage</div>
+        }
+        @if (Model.Anhs.Any())
+        {
+            <div class="d-flex flex-wrap gap-3 mt-3">
+                @foreach (var a in Model.Anhs)
+                {
+                    <div class="text-center">
+                        <img src="@a.DuongDan" alt="Ảnh sinh viên" class="img-thumbnail" style="height:110px;width:110px;object-fit:cover" />
+                        <div class="form-check mt-1">
+                            <input class="form-check-input" type="checkbox" name="xoaAnhIds" value="@a.Id" id="xoa-@a.Id" />
+                            <label class="form-check-label small text-danger" for="xoa-@a.Id">Xóa ảnh này</label>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
     <div class="col-md-6">
         <label asp-for="SoDienThoai" class="form-label"></label>
         <input asp-for="SoDienThoai" class="form-control" />

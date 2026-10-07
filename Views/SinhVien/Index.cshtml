@@ -36,6 +36,7 @@
                     <th>Giới tính</th>
                     <th>Khoa</th>
                     <th>Email</th>
+                    <th>Hình ảnh</th>
                     <th class="text-end">Thao tác</th>
                 </tr>
             </thead>
@@ -49,6 +50,25 @@
                         <td>@sv.GioiTinh</td>
                         <td>@sv.Khoa?.TenKhoa</td>
                         <td>@sv.Email</td>
+                        <td>
+                            @if (sv.Anhs.Any())
+                            {
+                                <div class="d-flex align-items-center gap-1">
+                                    @foreach (var anh in sv.Anhs.Take(3))
+                                    {
+                                        <img src="@anh.DuongDan" alt="@sv.HoTen" class="rounded" style="width:48px;height:48px;object-fit:cover" loading="lazy" />
+                                    }
+                                    @if (sv.Anhs.Count > 3)
+                                    {
+                                        <span class="badge bg-secondary">+@(sv.Anhs.Count - 3)</span>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <span class="text-muted">—</span>
+                            }
+                        </td>
                         <td class="text-end">
                             <a class="btn btn-sm btn-info text-white" asp-action="Details" asp-route-id="@sv.Id">Chi tiết</a>
                             <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@sv.Id">Sửa</a>
@@ -58,7 +78,7 @@
                 }
                 @if (!Model.Any())
                 {
-                    <tr><td colspan="7" class="text-center text-muted py-4">Không có dữ liệu</td></tr>
+                    <tr><td colspan="8" class="text-center text-muted py-4">Không có dữ liệu</td></tr>
                 }
             </tbody>
         </table>

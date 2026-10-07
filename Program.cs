@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Lesson6.Data;
+using Lesson6.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
+
+// Chức năng 4: đăng ký middleware, PHẢI đặt trước MapControllerRoute
+app.UseMiddleware<RequestLoggingMiddleware>();
 
 app.MapControllerRoute(
     name: "default",
